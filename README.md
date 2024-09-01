@@ -6,5 +6,7 @@
 * 타입 추론 제네릭
 * 실습
 
+* https://curogom.notion.site/24-2-TypeScript-9f01d663b18f4fcd86946d9c31b783ce
+
 
 
