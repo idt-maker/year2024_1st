@@ -126,7 +126,7 @@ let yourName: string | undefined = 'Hanyang';
 yourName = undefined; // 정상
 yourName = "안녕"; // 정상
 yourName = 2024; //  문자열이거나 Null 만 존재
-yourName = null; //null string 또는 undefined는 타입에 할당될 수 없음
+yourName = null; //null 할당될 수 없음
 ```
 ***
 
@@ -139,7 +139,7 @@ let yourName: string | null = 'Hanyang';
 yourName = null; // 정상
 yourName = "안녕"; // 정상
 yourName = 2024; //  문자열이거나 Null 만 존재
-yourName = undefined; //undefined는 string 또는 null 타입에 할당될 수 없음
+yourName = undefined; //undefined는 할당될 수 없음
 ```
 ***
 
