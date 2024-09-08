@@ -38,7 +38,7 @@
 
   ```
   B.ts file
-  expert {};
+  export {};
   const arr = ['Y','A','N','G']
 
   ```
