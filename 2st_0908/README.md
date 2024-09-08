@@ -55,10 +55,16 @@ interface IStudy {
   week: number;
 }
  // 클래스 접근제한자 public 클래스로 통한 인터페이스 확장 implements
- // 인터페이스로 클래스를 초기화를 해주었기에 확장 클래스에서는 생략
-
+ // 인터페이스로 초기화(name week) 해주었기에 확장(implements) 클래스에서는 생략
+ // implements 한 클래스에 interface 타입이 없다면 에러를 반환한다.
+ // extends 키워드는 상속을 위한 개념 (없거나 있거나)
+ // implements 정의갑은 모두 필수적으로 타입으로 지정한 메서드 모두 내부에서 재정의가 필요하다.
 class Person implements IStudy {
+  
   constructor(public name: string, public week: number) {}
+  //아래와 같이 타입을 지정해주지 않으면 에러를 밷는다.
+  //constructor(public name, public week) {}
+   
 }
 
 //함수 램던 함수 ceil() 소수점 반올림
@@ -74,6 +80,7 @@ const makeStudy = (name: string, week: number = makeRandomCheck()) => ({
 ```
 
 >>위 코드에서 다른 페이지(타입스크립트 파일) 불러 오려고하면
+  
 ```
 
 const testMakeWeek = (): void => {
