@@ -319,6 +319,8 @@ greeter.greet('한양');
 
 <h2>3. 타입 가드, 타입 단언</h2>
 
+>> 타입 가드는 TypeScript에서 변수의 타입을 좁히는 방법을 제공하는 기능입니다. 
+
 <h3>typeof를 사용한 타입 가드</h3>  
 
 ```
@@ -331,12 +333,16 @@ function printValue(value: string | number) {
 }
 
 ```
->>typeof value === 'string' 조건문 안에서 value는 문자열 타입으로 좁혀지게 된다.
->>if (typeof value === 'string') 조건문을 사용하여 value가 문자열인지 확인합니다.
-typeof 연산자는 런타임에 변수의 타입을 검사할 때 사용됩니다.
->>이 함수는 입력된 값이 문자열인지 숫자인지에 따라 다른 처리를 수행하여 결과를 출력합니다. 타입 가드(typeof 연산자)를 사용함으로써 TypeScript는 value의 구체적인 타입을 알고, 해당 타입에서 사용할 수 있는 메서드(toUpperCase, toFixed)를 안전하게 호출할 수 있습니다.
+>>typeof value === 'string' 조건문 안에서 value는 문자열 타입으로 좁혀지게 된다.  
+>>if (typeof value === 'string') 조건문을 사용하여 value가 문자열인지 확인합니다.  
+>> typeof 연산자는 런타임에 변수의 타입을 검사할 때 사용됩니다.  
+>>이 함수는 입력된 값이 문자열인지 숫자인지에 따라 다른 처리를 수행하여 결과를 출력합니다.  
+>>타입 가드(typeof 연산자)를 사용함으로써 TypeScript는 value의 구체적인 타입을 알고,  
+>>해당 타입에서 사용할 수 있는 메서드(toUpperCase, toFixed)를 안전하게 호출할 수 있습니다.
   
 <h3>instanceof를 사용한 타입 가드</h3>  
+
+
 
 ```
 class Dog {
@@ -378,8 +384,8 @@ interface Bird {
 function isFish(pet: Fish | Bird): pet is Fish {
   return (pet as Fish).swim !== undefined;
 
-//**매개변수 pet**은 Fish 또는 Bird 타입을 가질 수 있습니다.
-//**pet is Fish**라는 반환 타입은 TypeScript에서 사용자 정의 타입 가드를 정의하는 방식입니다.
+//매개변수 pet은 Fish 또는 Bird 타입을 가질 수 있습니다.
+//pet is Fish라는 반환 타입은 TypeScript에서 사용자 정의 타입 가드를 정의하는 방식입니다.
 //만약 swim 메서드가 undefined가 아니라면, pet은 Fish 타입이라고 판단할 수 있습니다.
 }
 
@@ -395,10 +401,11 @@ function move(pet: Fish | Bird) {
 //반대로 isFish(pet)가 false를 반환하면 pet이 Bird 타입이라고 간주하고, fly() 메서드를 호출합니다.
 ```  
 
->>isFish(pet): pet is Fish는 pet이 Fish 타입인지를 확인하는 사용자 정의 타입 가드입니다.(타입의 좁히는 방법)
-함수 내에서 isFish(pet)가 참일 경우, pet은 Fish 타입으로 좁혀지며 swim 메서드를 안전하게 호출할 수 있습니다.
->>타입 가드는 TypeScript에서 변수의 타입을 좁히는 방법을 제공하는 기능입니다. 이 코드는 Fish와 Bird라는 두 가지 인터페이스와 함께, isFish라는 사용자 정의 타입 가드를 사용하여 pet이 Fish인지 Bird인지 구분하는 구조입니다.
->>사용자 정의 타입 가드는 typeof, instanceof로 처리하기 힘든 복잡한 타입 확인을 가능하게 하며, 코드의 타입 안정성을 높여줍니다.
+>>isFish(pet): pet is Fish는 pet이 Fish 타입인지를 확인하는 사용자 정의 타입 가드입니다.(타입의 좁히는 방법)  
+>>함수 내에서 isFish(pet)가 참일 경우, pet은 Fish 타입으로 좁혀지며 swim 메서드를 안전하게 호출할 수 있습니다.  
+>>타입 가드는 TypeScript에서 변수의 타입을 좁히는 방법을 제공하는 기능입니다.
+>>이 코드는 Fish와 Bird라는 두 가지 인터페이스와 함께, isFish라는 사용자 정의 타입 가드를 사용하여 pet이 Fish인지 Bird인지 구분하는 구조입니다.  
+>>사용자 정의 타입 가드는 typeof, instanceof로 처리하기 힘든 복잡한 타입 확인을 가능하게 하며, 코드의 타입 안정성을 높여줍니다.  
 
   
   <h3>기본적인 타입 단언 사용</h3>  
@@ -420,10 +427,11 @@ console.log(strLength); // 출력: 11
 someValue as string을 통해 someValue가 문자열이라고 컴파일러에 알려주고, 그 후에 문자열 메서드를 사용할 수 있습니다.
 
 
- <h3>as와 <Type> 문법의 차이(타입단언)</h3>    
- >>타입 단언(type assertion)**을 통해 컴파일러에게 특정 값이 지정된 타입임을 명시적으로 알려줄 수 있습니다.  
- >> 이를 두 가지 방법으로 표현할 수 있는데, 바로 as 문법과 <Type> 문법입니다.  
- >> 이 두 방식은 기능적으로는 동일하지만, 일부 차이가 있습니다.
+ <h3>as와 <Type> 문법의 차이(타입단언)</h3>  
+  
+>>타입 단언(type assertion)을 통해 컴파일러에게 특정 값이 지정된 타입임을 명시적으로 알려줄 수 있습니다.  
+>>이를 두 가지 방법으로 표현할 수 있는데, 바로 as 문법과 <Type> 문법입니다.
+>>이 두 방식은 기능적으로는 동일하지만, 일부 차이가 있습니다.  
     
  ```
  let someValue: any = "hello";
@@ -440,10 +448,12 @@ let strLengthAngle: number = (<string>someValue).length;
 
 //위의 as 문법과 동일하게, someValue가 string 타입임을 컴파일러에 알려주는 방식입니다.
 //<string>을 통해 someValue의 타입을 string으로 단언하고 .length를 사용할 수 있습니다.
+
  ```
 
- >>as 문법: (value as Type) 형태로 사용되며, JSX가 포함된 파일에서 안전합니다.
- >><Type> 문법: <Type>value 형태로 사용되며, 일반 TypeScript 파일에서 사용하기 좋습니다.  
+ >> as 문법: (value as Type) 형태로 사용되며, JSX가 포함된 파일에서 안전합니다.
+ 
+ >> <Type> 문법: <Type>value 형태로 사용되며, 일반 TypeScript 파일에서 사용하기 좋습니다.  
 
 
 >>타입 단언을 사용할 때 주의할 점
