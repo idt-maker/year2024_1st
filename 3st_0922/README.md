@@ -354,19 +354,45 @@ DOM 은 프로그래밍 언어와 독립적으로 디자인되었다. 때문에 
 <form @submit.prevent="onSubmit">...</form>
 ```
 
-
-
 ---  
-
 
 v-text : string
 텍스트 컨텐츠 업데이트
 ```
-<span v-text="msg"></span>
-<!-- 아래와 같음 -->
-<span>{{msg}}</span>
+<template>
+  <div>
+    <h1>v-text 예제</h1>
+    <span v-text="msg"></span>
+    <br>
+    <span>{{ msg }}</span>
+    <br>
+    <input v-model="msg" placeholder="메시지 입력">
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      msg: '안녕하세요, Vue.js!'
+    };
+  }
+};
+</script>
+
+<style scoped>
+/* 스타일을 여기에 추가하세요 */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+</style>
 ```
- 
+![image](https://github.com/user-attachments/assets/332c7145-6ffd-48ef-96b8-0953da836ff4)  
+
+---  
+
 v-html : string  
 innerHTML을 업데이트합니다.
 엘리먼트의 innerHTML을 업데이트합니다.
@@ -377,9 +403,47 @@ innerHTML을 업데이트합니다.
 보안 참고 사항
 웹사이트에서 임의의 HTML을 동적으로 렌더링하는 것은 XSS 공격으로 쉽게 이어질 수 있기 때문에 매우 위험할 수 있습니다. 신뢰할 수 있는 컨텐츠에만 v-html을 사용하고, 사용자가 제공하는 컨텐츠에는 절대 사용하면 안됩니다.
 
+![image](https://github.com/user-attachments/assets/be612dce-8eba-4a8e-ac24-d002f70aceea)  
+
+
+
+---  
+
 v-show : any
 ```
-<h1 v-show="ok">안녕!</h1>
+<template>
+  <div>
+    <h1>v-html 및 v-show 예제</h1>
+    <button @click="toggleContent">내용 표시/숨기기</button>
+    <div v-show="isVisible">
+      <div v-html="htmlContent"></div>
+    </div>
+    <input v-model="htmlContent" placeholder="HTML 입력">
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      htmlContent: '<p>안녕하세요, <span class="highlight">Vue.js!</span></p>',
+      isVisible: true, // 요소의 가시성 상태
+    };
+  },
+  methods: {
+    toggleContent() {
+      this.isVisible = !this.isVisible; // 상태 토글
+    }
+  }
+};
+</script>
+
+<style scoped>
+.highlight {
+    color: red;
+    font-weight: bold;
+}
+</style>
 ```
 차이점은 v-show가 있는 엘리먼트는 항상 렌더링되고 DOM에 남아 있다는 것입니다. v-show는 엘리먼트의 display CSS 속성만 전환합니다.
 
@@ -388,12 +452,18 @@ v-show는 `<template>` 엘리먼트를 지원하지 않으며 v-else와 상호�
 (엘리먼트는 CSS 기반으로 전환 되므로, 초기 조건과 관계없이 항상 렌더링 됩니다.  
 )
 
+![image](https://github.com/user-attachments/assets/cffc93d6-b0c8-4026-8895-b367450ef8de)  
+![image](https://github.com/user-attachments/assets/454def46-8e2e-4476-b2ea-47ab1eb90a8f)
+
+
+---
 v-if : any  
 
 v-if 디렉티브는 조건부로 블록을 렌더링하는 데 사용됩니다. 블록은 디렉티브 표현식이 truthy 값을 반환하는 경우에만 렌더링됩니다.
 ```
 <h1 v-if="awesome">Vue는 정말 멋지죠!</h1>
-```  
+```
+  
 --- 
 
 v-else
