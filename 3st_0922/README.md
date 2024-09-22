@@ -121,18 +121,35 @@ npm run serve -> 실행시
 모든 Vue 앱은 Vue 함수로 새 Vue 인스턴스를 만드는 것부터 시작합니다.
 
 ```
-var vm = new Vue({
-  // 옵션
-})
+  <div id="app">
+    {{ message }}
+  </div>
+
+  <script>
+    // Vue 3 애플리케이션 생성
+    const { createApp } = Vue;
+
+    // 애플리케이션 인스턴스 생성 및 마운트
+    createApp({
+      data() {
+        return {
+          message: 'Hello Vue 3!'
+        };
+      }
+    }).mount('#app');
+  </script>
 ```
 
- MVVM 패턴과 관련이 없지만 Vue의 디자인은 부분적으로 그것에 영감을 받았습니다.  
- 관례적으로, Vue 인스턴스를 참조하기 위해 종종 변수 vm(ViewModel의 약자)을 사용합니다.  
+createApp(): Vue 3에서는 애플리케이션을 생성할 때 createApp() 함수를 사용합니다.
 
-Vue 인스턴스를 생성할 때는 options 객체를 전달해야 합니다.   
-이 가이드는 대부분 원하는 생성을 구현할 때 이런 옵션들을 사용하여 원하는 동작을   
-구현하는 방법에 대해 다룹니다.   
-전체 옵션 목록은 API reference에서 확인할 수 있습니다.
+data(): Vue 3에서 data는 함수로 반환되어야 하며, 객체를 반환하는 구조로 작성합니다.  
+
+mount(): mount()는 Vue 애플리케이션을 특정 DOM 요소에 마운트하는 함수입니다.  
+         여기서는 id="app"을 가진 엘리먼트에 마운트됩니다.  
+
+Vue 3를 사용하여 기본적인 Vue 애플리케이션을 만들고, {{ message }}를 통해 데이터가 HTML에 바인딩되는 방식으로 작동합니다.  
+
+
 
 ---
 <h3>데이터 바인딩</h3>
