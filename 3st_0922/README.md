@@ -53,6 +53,10 @@ button {
 
 다운로드 Node.js. 다운로드 및 설치를 한다.  
 
+[node js 다운로드 ] (https://nodejs.org/en).
+
+
+
 설치를하고 CMD 창에서 node 를 치면  
 
 ![alt text](image-2.png)    
@@ -191,43 +195,84 @@ export default {
 
 <h2> 컴포넌트, 템플릿</h2>    
 
-<h3>컴포넌트</h3>
-컴포넌트를 사용하면 UI를 독립적이고 재사용 가능한 일부분으로 분할하고 각 부분을 개별적으로 다룰 수 있습니다. 따라서 앱이 중첩된 컴포넌트의 트리로 구성되는 것은 일반적입니다  
+<h3>컴포넌트</h3>  
+
+Vue.js에서 컴포넌트는 재사용 가능한 UI 블록으로, 애플리케이션의 특정 기능이나 화면을 정의하는 독립적인 단위입니다.
 
 ![alt text](image-8.png)  
 
 컴포넌트 정의
 
-빌드 방식을 사용할 때 일반적으로 싱글 파일 컴포넌트(줄여서 SFC)라고 하는 .vue 확장자를 사용하는 전용 파일에 각 Vue 컴포넌트를 정의합니다  
+템플릿: HTML을 사용하여 컴포넌트의 UI를 정의합니다. 
+
 ```
-<script setup>
-import { ref } from 'vue'
-
-const count = ref(0)
-</script>
-
 <template>
-  <button @click="count++">당신은 {{ count }} 번 클릭했습니다.</button>
+  <div>
+    <h1>{{ title }}</h1>
+  </div>
 </template>
 ```
 
-빌드 방식을 사용하지 않을 때, Vue 컴포넌트는 Vue 관련 옵션을 포함하는 일반 JavaScript 객체로 정의할 수 있습니다:
+스크립트: 컴포넌트의 로직과 데이터, 메서드를 정의합니다.
 ```
-import { ref } from 'vue'
+<script>
+export default {
+  data() {
+    return {
+      title: 'Hello, Vue!'
+    };
+  },
+  methods: {
+    // 메서드 정의
+  }
+};
+</script>
+
+```
+스타일: CSS를 사용하여 컴포넌트의 스타일을 정의합니다. 
+```
+<template>
+  <div>
+    <my-component></my-component>
+  </div>
+</template>
+
+<script>
+import MyComponent from './MyComponent.vue';
 
 export default {
-  setup() {
-    const count = ref(0)
-    return { count }
-  },
-  template: `
-    <button @click="count++">
-      당신은 {{ count }} 번 클릭했습니다.
-    </button>`
-  // DOM 내의 템플릿을 대상으로 할 수도 있습니다:
-  // template: '#my-template-element'
-}
-```  
+  components: {
+    MyComponent
+  }
+};
+</script>
+
+```
+
+컴포넌트 사용 예
+컴포넌트를 사용하여 다른 컴포넌트를 포함할 수 있습니다.
+
+```
+<template>
+  <div>
+    <my-component></my-component>
+  </div>
+</template>
+
+<script>
+import MyComponent from './MyComponent.vue';
+
+export default {
+  components: {
+    MyComponent
+  }
+};
+</script>
+```
+
+
+
+
 ---  
 
 
@@ -242,35 +287,49 @@ export default {
 이중 중괄호 태그 내 msg는 해당 컴포넌트 인스턴스의 msg 속성의 값으로 대체됩니다. 또한 msg 속성이 변경될 때마다 업데이트됩니다.
 
 ```
-<span>메세지: {{ msg }}</span>  
+<template>
+  <div>
+    <p>{{ message }}</p>
+  </div>
+</template>
 ```
 <h4>HTML 출력</h4>  
 이중 중괄호는 데이터를 HTML이 아닌 일반 텍스트로 해석합니다. 실제 HTML을 출력하려면 v-html 디렉티브을 사용해야 합니다:
 
 
 ```
-<p>텍스트 보간법 사용: {{ rawHtml }}</p>
-<p>v-html 디렉티브 사용: <span v-html="rawHtml"></span></p>
-
-```  
-<h4>속성 바인딩</h4>  
-이중 중괄호는 HTML 속성(attribute) 내에서 사용할 수 없습니다. 대신 v-bind 디렉티브를 사용하세요.  
-
-v-bind 디렉티브는 엘리먼트의 id 속성을 컴포넌트의 dynamicId 속성과 동기화된 상태로 유지하도록 Vue에 지시합니다. 바인딩된 값이 null 또는 undefined이면 엘리먼트의 속성이 제거된 상태로 렌더링 됩니다.
-
+<template>
+  <div v-html="htmlContent"></div>
+</template>
 
 ```
-<div v-bind:id="dynamicId"></div>
 
-단축 문법
-<div :id="dynamicId"></div>
+여기서 htmlContent는 HTML 태그가 포함된 문자열일 수 있으며, 이를 안전하게 출력합니다.  
+하지만, 사용 시 XSS 공격에 주의해야 합니다.
+
+<h4>속성 바인딩</h4>  
+
+속성 바인딩은 v-bind 디렉티브를 사용하여 HTML 요소의 속성에 Vue 인스턴스의 데이터를 동적으로 바인딩하는 방법입니다.
+
+```
+<template>
+  <img v-bind:src="imageSrc" alt="Dynamic Image">
+</template>
+
+```
+여기서 imageSrc는 Vue 인스턴스의 데이터 속성으로, 이미지 URL이 저장되어 있습니다.  
+v-bind:를 생략하고 :를 사용할 수도 있습니다.
+
+```
+<img :src="imageSrc" alt="Dynamic Image">
 ```
 
 
 ---
 <h2> 디렉티브 (v-if, v-for, v-bind 등)</h2>    
 
-디렉티브란 v- 접두가사 있는 특수 속성
+Vue.js에서 디렉티브는 특수 속성으로, HTML 요소에 대한 행동이나 특성을 제어하는 데 사용됩니다.   
+
 ![alt text](image-14.png)
 
   
@@ -393,22 +452,9 @@ const items = ref([{ message: 'Foo' }, { message: 'Bar' }])
 ---  
 
 v-on
-엘리먼트에 이벤트 리스너를 연결합니다.
+v-on은 이벤트 리스너를 등록할 때 사용됩니다. DOM 이벤트에 대한 핸들러를 연결할 수 있습니다.
 
 
-```
-.stop - event.stopPropagation() 호출.
-.prevent - event.preventDefault() 호출.
-.capture - 캡처 모드로 이벤트 등록.
-.self - 이벤트가 이 엘리먼트에서 전달된 경우에만 트리거 됨.
-.{keyAlias} - 이벤트가 특정 키에 대해서만 트리거 됨.
-.once - 이벤트가 한 번만 트리거 됨(일회용처럼).
-.left - 마우스 왼쪽 버튼으로만 이벤트가 트리거 됨.
-.right - 마우스 오른쪽 버튼으로만 이벤트가 트리거 됨.
-.middle - 마우스 중앙(힐 클릭) 버튼으로만 이벤트가 트리거 됨.
-.passive - { passive: true } 옵션으로 DOM 이벤트를 등록.
-```
-예제
 ```
 <script setup>
 import { ref } from 'vue'
@@ -423,59 +469,45 @@ const count = ref(0)
 ```  
 ![alt text](image-13.png)
 
+
 ---  
 
-v-bind
-하나 이상의 속성 또는 컴포넌트 prop을 표현식에 동적으로 바인딩합니다.
+v-bind  
+
+v-bind는 HTML 요소의 속성에 데이터를 바인딩할 때 사용됩니다. 이를 통해 속성을 동적으로 변경할 수 있습니다.  
+
+
+```  
+<template>
+  <div>
+    <h1>속성 바인딩 예제</h1>
+    <img :src="imageSrc" alt="Dynamic Image">
+    <input v-model="imageSrc" placeholder="이미지 URL 입력">
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      imageSrc: 'https://via.placeholder.com/300'
+    };
+  }
+};
+</script>
+
+<style scoped>
+img {
+  max-width: 300px;
+  border: 2px solid #ccc;
+}
+</style>
 
 ```
-.camel - kebab-case 속성 이름을 camelCase로 변환.
-.prop - 바인딩을 DOM 속성(property: 이하 프로퍼티)으로 강제 설정. 3.2+
-.attr - 바인딩을 DOM 속성(attribute)으로 강제 설정. 3.2+
-```  
+![image](https://github.com/user-attachments/assets/abf6c5a3-2d1f-4832-a3cb-f8755add71db)
 
-  
-```  
-<!-- 속성 바인딩 -->
-<img v-bind:src="imageSrc" />
-
-<!-- 동적인 속성명 -->
-<button v-bind:[key]="value"></button>
-
-<!-- 단축 문법 -->
-<img :src="imageSrc" />
-
-<!-- 같은 이름 생략 가능 (3.4+), 오른쪽과 같음 :src="src" -->
-<img :src />
-
-<!-- 단축 문법과 동적 속성명 -->
-<button :[key]="value"></button>
-
-<!-- 인라인으로 문자열 결합 -->
-<img :src="'/path/to/images/' + fileName" />
-
-<!-- class 바인딩 -->
-<div :class="{ red: isRed }"></div>
-<div :class="[classA, classB]"></div>
-<div :class="[classA, { classB: isB, classC: isC }]"></div>
-
-<!-- style 바인딩 -->
-<div :style="{ fontSize: size + 'px' }"></div>
-<div :style="[styleObjectA, styleObjectB]"></div>
-
-<!-- 속성을 객체로 바인딩 -->
-<div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
-
-<!-- prop 바인딩. "prop"은 자식 컴포넌트에서 선언되어 있어야 함 -->
-<MyComponent :prop="someThing" />
-
-<!-- 자식 컴포넌트와 공유될 부모 props를 전달 -->
-<MyComponent v-bind="$props" />
-
-<!-- XLink -->
-<svg><a :xlink:special="foo"></a></svg>
-
-```  
+위 예에서는 imageSrc의 값이 이미지의 src 속성으로 바인딩됩니다.  
+페이지에서 주소를 넣으면 바로바로 바뀝니다.
 
 
 ---
