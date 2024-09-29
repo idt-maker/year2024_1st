@@ -7,6 +7,7 @@
 - 실습: Vue.js 애플리케이션 기능 확장
 
 
+---  
 
 <h2>Vue Router를 이용한 SPA 개발</h2>
 
@@ -40,10 +41,11 @@ npm install vue-router@4
 ```
 
 
+---  
 
 <h3>Vuex를 이용한 상태 관리</h3>
 
-<h2></h2>  
+<h2>Vuex란?</h2>  
 
 Vuex는 Vue.js 애플리케이션에 대한 상태 관리 패턴 + 라이브러리 입니다.  
 애플리케이션의 모든 컴포넌트에 대한 중앙 집중식 저장소 역할을 하며 예측 가능한 방식으로 상태를  
@@ -109,7 +111,7 @@ new Vue({
 손자  뷰->  
 
 
-
+---  
 
 <h3>Vuetify/Element UI 등 UI 프레임워크 활용</h3>  
 
@@ -136,12 +138,18 @@ vue add vuetify
 
 만들어져 있는 환경에 있는 소스를 가지고 와서
 붙여넣기 만으로 간단하게 메뉴나 환경을 구성을 할수 있다
-원하는 메뉴를 선택을해서
-![alt text](4imgremade/image-22.png)
-붙여넣기를 하면
-![alt text](4imgremade/image-21.png)
-손쉽게 완성
-![alt text](4imgremade/image-23.png)  
+원하는 메뉴를 선택을해서  
+
+![alt text](4imgremade/image-22.png)  
+
+붙여넣기를 하면  
+
+![alt text](4imgremade/image-21.png)  
+
+손쉽게 완성  
+
+![alt text](4imgremade/image-23.png)    
+
 
 
   
@@ -185,18 +193,95 @@ app.mount('#app')
 }
 ```
 
+![image](https://github.com/user-attachments/assets/29eca4c2-fb7b-4ca1-98de-79920de39a79)
 
-<h3>Vue.js 개발 도구 (Vue Devtools)</h3>
+```
+<el-form ref="form" :model="form" label-width="120px">
+  <el-form-item label="Activity name">
+    <el-input v-model="form.name"></el-input>
+  </el-form-item>
+  <el-form-item label="Activity zone">
+    <el-select v-model="form.region" placeholder="please select your zone">
+      <el-option label="Zone one" value="shanghai"></el-option>
+      <el-option label="Zone two" value="beijing"></el-option>
+    </el-select>
+  </el-form-item>
+  <el-form-item label="Activity time">
+    <el-col :span="11">
+      <el-date-picker type="date" placeholder="Pick a date" v-model="form.date1" style="width: 100%;"></el-date-picker>
+    </el-col>
+    <el-col class="line" :span="2">-</el-col>
+    <el-col :span="11">
+      <el-time-picker placeholder="Pick a time" v-model="form.date2" style="width: 100%;"></el-time-picker>
+    </el-col>
+  </el-form-item>
+  <el-form-item label="Instant delivery">
+    <el-switch v-model="form.delivery"></el-switch>
+  </el-form-item>
+  <el-form-item label="Activity type">
+    <el-checkbox-group v-model="form.type">
+      <el-checkbox label="Online activities" name="type"></el-checkbox>
+      <el-checkbox label="Promotion activities" name="type"></el-checkbox>
+      <el-checkbox label="Offline activities" name="type"></el-checkbox>
+      <el-checkbox label="Simple brand exposure" name="type"></el-checkbox>
+    </el-checkbox-group>
+  </el-form-item>
+  <el-form-item label="Resources">
+    <el-radio-group v-model="form.resource">
+      <el-radio label="Sponsor"></el-radio>
+      <el-radio label="Venue"></el-radio>
+    </el-radio-group>
+  </el-form-item>
+  <el-form-item label="Activity form">
+    <el-input type="textarea" v-model="form.desc"></el-input>
+  </el-form-item>
+  <el-form-item>
+    <el-button type="primary" @click="onSubmit">Create</el-button>
+    <el-button>Cancel</el-button>
+  </el-form-item>
+</el-form>
+<script>
+  export default {
+    data() {
+      return {
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        }
+      }
+    },
+    methods: {
+      onSubmit() {
+        console.log('submit!');
+      }
+    }
+  }
+</script>
+
+```
+
+---  
+
+
+<h3>Vue.js 개발 도구 (Vue Devtools)</h3>  
+
+
 설치방법   
 
 ![alt text](4imgremade/image-25.png)
 
-사용법
-![alt text](4imgremade/image-27.png)  
+사용법  
 
-  ![alt text](4imgremade/image-26.png)
+![alt text](4imgremade/image-27.png)   
 
   
+![alt text](4imgremade/image-26.png)  
 
 ![alt text](4imgremade/image-28.png)  
 
