@@ -2,7 +2,7 @@
 
 ## Node.js 소개 및 설치
 
-![alt text](/5imgremade/image-2.png)
+![alt text](5imgremade/image-2.png)
 ### Node.js란?
 
 Node.js는 "Chrome V8 JavaScript 엔진으로 빌드된 JavaScript 런타임"입니다. 이는 JavaScript를 서버 사이드에서 실행할 수 있게 해주는 플랫폼입니다. 과거에는 JavaScript가 주로 웹 브라우저에서만 동작하는 프론트엔드 언어로 사용되었지만, Node.js의 등장으로 백엔드 개발에도 사용할 수 있게 되었습니다.
