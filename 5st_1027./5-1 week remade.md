@@ -2,8 +2,7 @@
 
 ## Node.js 소개 및 설치
 
-Node.js 로고
-
+![alt text](/5imgremade/image-2.png)
 ### Node.js란?
 
 Node.js는 "Chrome V8 JavaScript 엔진으로 빌드된 JavaScript 런타임"입니다. 이는 JavaScript를 서버 사이드에서 실행할 수 있게 해주는 플랫폼입니다. 과거에는 JavaScript가 주로 웹 브라우저에서만 동작하는 프론트엔드 언어로 사용되었지만, Node.js의 등장으로 백엔드 개발에도 사용할 수 있게 되었습니다.
@@ -35,7 +34,12 @@ Node.js는 비동기 이벤트 기반 아키텍처를 사용합니다. 이를 �
 
 1. [Node.js 공식 웹사이트](https://nodejs.org/)에서 설치 파일을 다운로드합니다.
 2. 설치 파일을 실행하고 안내에 따라 설치를 진행합니다.
+![alt text](/5imgremade/image-3.png)
+
+
 3. 설치가 완료되면 명령 프롬프트(cmd)에서 다음 명령어로 설치를 확인할 수 있습니다:
+
+
 
 ```bash
 node --version
