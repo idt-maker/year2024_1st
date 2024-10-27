@@ -47,3 +47,4 @@ npm --version
 ```
 
 설치 확인
+![alt text](5imgremade/image-4.png)
