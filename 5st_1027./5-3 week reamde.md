@@ -32,7 +32,7 @@
 2. **모듈 사용하기 (레고 블록 조립)**
    ```javascript
    // main.js
-   const greet = require('./greetingBlock');
+   const greet = require('./greetingBlock'); -> require 함수를 이용 greetingBlock.js 불러옵니다.
 
    greet('철수'); // "안녕하세요, 철수님!" 출력
    ```
@@ -49,7 +49,8 @@
 1. **단일 기능 내보내기**
    ```javascript
    module.exports = function() { /* ... */ };
-   ```
+   ```  
+이 방식은 모듈에서 하나의 함수나 객체만을 내보낼 때 사용합니다. 모듈을 불러오면 이 단일 기능을 직접 사용할 수 있습니다.  
 
 2. **여러 기능 내보내기**
    ```javascript
@@ -57,13 +58,22 @@
      function1: function() { /* ... */ },
      function2: function() { /* ... */ }
    };
-   ```
+   ```  
+이 방식은 여러 기능을 하나의 객체로 묶어 내보낼 때 사용합니다. 모듈을 불러오면 객체의 속성으로 각 기능에 접근할 수 있습니다.  
+
 
 3. **객체에 속성 추가하기**
    ```javascript
    exports.function1 = function() { /* ... */ };
    exports.function2 = function() { /* ... */ };
-   ```
+   ```  
+이 방식은 exports 객체에 직접 속성을 추가하는 방식입니다.  
+module.exports와 exports는 처음에 같은 객체를 참조하지만, module.exports에 새 객체를 할당하면 연결이 끊어집니다.  
+4. **모듈 불러오기**  
+```
+const myModule = require('./myModule');  
+```
+여기서 ./myModule은 현재 디렉토리에 있는 myModule.js 파일을 가리킵니다.  
 
 Node.js의 모듈 시스템을 사용하면, 큰 프로그램을 작은 부품(모듈)들로 나누어 개발할 수 있습니다. 이는 마치 다양한 레고 블록들을 조합하여 복잡한 구조물을 만드는 것과 같습니다. 각 모듈은 독립적으로 개발, 테스트, 재사용될 수 있어 효율적인 프로그램 개발이 가능합니다.
 
