@@ -47,3 +47,19 @@
 - MongoDB 연동 (Mongoose ODM)
 - RESTful API 설계 및 구현
 - 실습: Node.js/Express API 서버 작성
+
+**7주차: 풀스택 개발 기초**
+
+- Vue.js와 Node.js/Express 연동
+- Axios를 이용한 HTTP 통신
+- CORS (Cross-Origin Resource Sharing)
+- 실습: Vue.js 애플리케이션과 Node.js/Express API 서버 연동
+
+**8-12주차: 풀스택 프로젝트 (개별 진행)**
+
+- 팀 구성 및 주제 선정
+- 프로젝트 기획 및 설계
+- 프론트엔드 개발 (Vue.js)
+- 백엔드 개발 (Node.js/Express)
+- API 연동 및 테스트
+- 배포 및 발표
